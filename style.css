@@ -1,0 +1,120 @@
+:root {
+  --bg: #14213d;
+  --panel: #1d2d50;
+  --line: #2f4573;
+  --text: #f1f5ff;
+  --muted: #9fb0d3;
+  --x: #ffb703;
+  --o: #4cc9f0;
+  --win: #2ec27e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.game {
+  width: min(92vw, 400px);
+  padding: 24px 0;
+  text-align: center;
+}
+
+h1 { margin: 0 0 18px; font-size: 2rem; letter-spacing: 0.5px; }
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.score {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.score span { font-size: 0.8rem; color: var(--muted); }
+.score strong { font-size: 1.5rem; }
+.score.x strong { color: var(--x); }
+.score.o strong { color: var(--o); }
+
+#status { min-height: 1.6em; margin: 0 0 14px; font-size: 1.1rem; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--line);
+  padding: 8px;
+  border-radius: 14px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  font-size: clamp(2.4rem, 14vw, 3.6rem);
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s;
+}
+.cell:hover:not(:disabled) { background: #26396a; }
+.cell:disabled { cursor: not-allowed; }
+.cell.x { color: var(--x); }
+.cell.o { color: var(--o); }
+.cell.win { background: var(--win); color: #0b1d13; }
+.cell:focus-visible, .btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.actions { display: flex; gap: 10px; margin-top: 18px; }
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--x);
+  color: #1b1500;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn.secondary { background: transparent; color: var(--text); border: 2px solid var(--line); }
+.btn:hover { filter: brightness(1.1); }
+
+.options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.options label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: left;
+}
+.options label[hidden] { display: none; }
+.options select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
